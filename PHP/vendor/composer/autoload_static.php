@@ -19,6 +19,10 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\HttpFoundation\\' => 33,
         ),
+        'D' =>
+        array (
+            'Database\\' => 9,
+        ),
         'B' =>
         array (
             'Buki\\Router\\' => 12,
@@ -41,6 +45,10 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
         'Symfony\\Component\\HttpFoundation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Database\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/src/Database',
         ),
         'Buki\\Router\\' =>
         array (

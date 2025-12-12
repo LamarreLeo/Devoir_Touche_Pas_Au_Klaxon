@@ -16,7 +16,7 @@ class Database
         $dsn = "mysql:host={$db['host']};port={$db['port']};dbname={$db['dbname']};charset={$db['charset']}";
 
         try {
-            $this->pdo = new PDO($dsn, $config["user"], $config["pass"], [
+            $this->pdo = new PDO($dsn, $db["user"], $db["pass"], [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);

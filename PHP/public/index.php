@@ -9,7 +9,7 @@ use Database\Database;
 $config = require __DIR__ . "/../config/config.php";
 
 $db = new Database($config);
-$pdo = $db->getPDO();
+$pdo = $db->getConnection();
 
 // Configuration du routeur
 use Buki\Router\Router;
@@ -23,6 +23,14 @@ $router = new Router([
 // ROUTE DE TEST PROVISOIR
 $router->get('/', function() {
     echo "Le routeur fonctionne correctement !";
+});
+
+$router->get('/test-db', function() use ($pdo) {
+    $stmt = $pdo->query("SHOW TABLES");
+    $tables = $stmt->fetchAll();
+    echo "<pre>";
+    print_r($tables);
+    echo "</pre>";
 });
 
 // DISPATCH

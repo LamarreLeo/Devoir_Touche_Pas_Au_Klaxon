@@ -2,14 +2,11 @@
     "name": "devoir/touche-pas-au-klaxon",
     "description": "Projet MVC - Touche Pas Au Klaxon",
     "require": {
-        "php": ">=8.0",
-        "iznibueak/router": "^2.0"
+        "izniburak/router": "^3.1"
     },
     "autoload": {
         "psr-4": {
             "App\\": "src/"
         }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    }
 }

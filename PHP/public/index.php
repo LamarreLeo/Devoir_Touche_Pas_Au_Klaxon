@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use Izniburak\Router\Router;
+use Buki\Router\Router;
 
 session_start();
 
 // Router
-$router = new Router();
+$router = new Router([
+    'base_folder' => '/Devoir_Touche_Pas_Au_Klaxon/PHP/public'
+]);
 
 // ROUTE DE TEST PROVISOIR
 $router->get('/', function() {
@@ -16,4 +18,4 @@ $router->get('/', function() {
 });
 
 // DISPATCH
-$router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+$router->run();

@@ -3,17 +3,19 @@ declare(strict_types=1);
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-// Configuration de la base de données
 use Database\Database;
 
+use Buki\Router\Router;
+
+use Model\User;
+
+// Configuration de la base de données
 $config = require __DIR__ . "/../config/config.php";
 
 $db = new Database($config);
 $pdo = $db->getConnection();
 
 // Configuration du routeur
-use Buki\Router\Router;
-
 session_start();
 
 $router = new Router([
@@ -30,6 +32,15 @@ $router->get('/test-db', function() use ($pdo) {
     $tables = $stmt->fetchAll();
     echo "<pre>";
     print_r($tables);
+    echo "</pre>";
+});
+
+$router->get('/test-user', function() use ($pdo) {
+    $userModel = new User($pdo);
+    $user = $userModel->findByEmail('admin@admin.com');
+
+    echo "<pre>";
+    print_r($user);
     echo "</pre>";
 });
 

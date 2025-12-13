@@ -9,6 +9,7 @@ return array(
     'Symfony\\Polyfill\\Php83\\' => array($vendorDir . '/symfony/polyfill-php83'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
+    'Model\\' => array($baseDir . '/src/Models'),
     'Database\\' => array($baseDir . '/src/Database'),
     'Buki\\Router\\' => array($vendorDir . '/izniburak/router/src'),
     'App\\' => array($baseDir . '/src'),

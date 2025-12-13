@@ -19,7 +19,7 @@ class Agence
      */
     public function findAll(): array
     {
-        $stmt = $this->pdo->query("SELECT * FROM agences ORDER BY nom ASC");
+        $stmt = $this->pdo->query("SELECT * FROM agences ORDER BY ville ASC");
         
         return $stmt->fetchAll();
     }

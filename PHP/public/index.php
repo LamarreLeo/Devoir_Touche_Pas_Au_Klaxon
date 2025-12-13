@@ -8,6 +8,7 @@ use Database\Database;
 use Buki\Router\Router;
 
 use Model\User;
+use Model\Agence;
 
 // Configuration de la base de données
 $config = require __DIR__ . "/../config/config.php";
@@ -41,6 +42,15 @@ $router->get('/test-user', function() use ($pdo) {
 
     echo "<pre>";
     print_r($user);
+    echo "</pre>";
+});
+
+$router->get('/test-agences', function() use ($pdo) {
+    $agenceModel = new Agence($pdo);
+    $agences = $agenceModel->findAll();
+
+    echo "<pre>";
+    print_r($agences);
     echo "</pre>";
 });
 

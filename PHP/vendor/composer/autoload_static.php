@@ -19,6 +19,10 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\HttpFoundation\\' => 33,
         ),
+        'M' =>
+        array (
+            'Model\\' => 6,
+        ),
         'D' =>
         array (
             'Database\\' => 9,
@@ -45,6 +49,10 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
         'Symfony\\Component\\HttpFoundation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Model\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/src/Models',
         ),
         'Database\\' =>
         array (

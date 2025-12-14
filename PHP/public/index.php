@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use Database\Database;
@@ -62,6 +66,28 @@ $router->get('/test-trajets', function() use ($pdo) {
     echo "<pre>";
     print_r($trajet);
     echo "</pre>";
+});
+
+$router->get('/test-create-trajet', function() use ($pdo) {
+
+    try {
+        $trajetModel = new Trajet($pdo);
+
+        $trajetModel->create(
+            1,
+            1,
+            2,
+            '2025-12-20 09:00:00',
+            '2025-12-20 12:00:00',
+            3
+        );
+
+        echo "Trajet créé avec succès.";
+    } catch (PDOException $e) {
+        echo "<pre>Erreur SQL : " . $e->getMessage() . "</pre>";
+    } catch (Throwable $e) {
+        echo "<pre>Erreur PHP : " . $e->getMessage() . "</pre>";
+    }
 });
 
 // DISPATCH

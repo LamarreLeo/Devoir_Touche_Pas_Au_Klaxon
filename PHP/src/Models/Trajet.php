@@ -24,7 +24,7 @@ class Trajet
                     t.id,
                     t.date_heure_depart,
                     t.date_heure_arrivee,
-                    t.place,
+                    t.places,
                     u.nom AS user_nom,
                     u.prenom AS user_prenom,
                     a1.ville AS agence_depart,
@@ -66,7 +66,7 @@ class Trajet
         int $agenceArriveeId,
         string $dateHeureDepart,
         string $dateHeureArrivee,
-        int $place
+        int $places
     ): bool {
         $stmt = $this->pdo->prepare("
             INSERT INTO trajets (
@@ -75,14 +75,14 @@ class Trajet
                 agence_arrivee_id,
                 date_heure_depart,
                 date_heure_arrivee,
-                place
+                places
             ) VALUES (
                 :user_id,
                 :agence_depart_id,
                 :agence_arrivee_id,
                 :date_heure_depart,
                 :date_heure_arrivee,
-                :place
+                :places
             )
         ");
 
@@ -92,7 +92,7 @@ class Trajet
             'agence_arrivee_id'  => $agenceArriveeId,
             'date_heure_depart'  => $dateHeureDepart,
             'date_heure_arrivee' => $dateHeureArrivee,
-            'place'              => $place
+            'places'              => $places
         ]);
     }
 
@@ -105,7 +105,7 @@ class Trajet
         int $agenceArriveeId,
         string $dateHeureDepart,
         string $dateHeureArrivee,
-        int $place
+        int $places
     ): bool {
         $stmt = $this->pdo->prepare("
             UPDATE trajets
@@ -113,7 +113,7 @@ class Trajet
                 agence_arrivee_id = :agence_arrivee_id,
                 date_heure_depart = :date_heure_depart,
                 date_heure_arrivee = :date_heure_arrivee,
-                place = :place
+                places = :places
             WHERE id = :id
         ");
 
@@ -123,7 +123,7 @@ class Trajet
             'agence_arrivee_id' => $agenceArriveeId,
             'date_heure_depart' => $dateHeureDepart,
             'date_heure_arrivee' => $dateHeureArrivee,
-            'place' => $place
+            'places' => $places
         ]);
     }
 

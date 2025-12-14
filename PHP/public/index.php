@@ -9,6 +9,7 @@ use Buki\Router\Router;
 
 use Model\User;
 use Model\Agence;
+use Model\Trajet;
 
 // Configuration de la base de données
 $config = require __DIR__ . "/../config/config.php";
@@ -51,6 +52,15 @@ $router->get('/test-agences', function() use ($pdo) {
 
     echo "<pre>";
     print_r($agences);
+    echo "</pre>";
+});
+
+$router->get('/test-trajets', function() use ($pdo) {
+    $trajetModel = new Trajet($pdo);
+    $trajet = $trajetModel->findAll();
+
+    echo "<pre>";
+    print_r($trajet);
     echo "</pre>";
 });
 

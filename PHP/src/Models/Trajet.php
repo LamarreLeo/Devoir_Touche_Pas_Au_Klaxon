@@ -42,7 +42,7 @@ class Trajet
     /**
      * Récupérer un trajet par son ID
      */
-    public function find(int $id): ?array
+    public function findById(int $id): ?array
     {
         $stmt = $this->pdo->prepare("
             SELECT *

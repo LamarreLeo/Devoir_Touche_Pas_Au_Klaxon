@@ -29,6 +29,7 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
         ),
         'C' =>
         array (
+            'Core\\' => 5,
             'Controller\\' => 11,
         ),
         'B' =>
@@ -61,6 +62,10 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
         'Database\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src/Database',
+        ),
+        'Core\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/src/Core',
         ),
         'Controller\\' =>
         array (

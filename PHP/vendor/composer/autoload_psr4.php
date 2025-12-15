@@ -11,6 +11,7 @@ return array(
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
     'Model\\' => array($baseDir . '/src/Models'),
     'Database\\' => array($baseDir . '/src/Database'),
+    'Controller\\' => array($baseDir . '/src/Controllers'),
     'Buki\\Router\\' => array($vendorDir . '/izniburak/router/src'),
     'App\\' => array($baseDir . '/src'),
 );

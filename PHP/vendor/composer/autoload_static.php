@@ -27,6 +27,10 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
         array (
             'Database\\' => 9,
         ),
+        'C' =>
+        array (
+            'Controller\\' => 11,
+        ),
         'B' =>
         array (
             'Buki\\Router\\' => 12,
@@ -57,6 +61,10 @@ class ComposerStaticInitae8b6eee4421bf1b5888c1301e2ff239
         'Database\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src/Database',
+        ),
+        'Controller\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/src/Controllers',
         ),
         'Buki\\Router\\' =>
         array (

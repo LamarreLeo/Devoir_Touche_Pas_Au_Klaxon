@@ -204,4 +204,35 @@ class TrajetController
 
         return $errors;
     }
+
+    /**
+     * Supprime un trajet
+     */
+    public function delete(int $id): void
+    {
+        $trajet = $this->trajetModel->findById($id);
+
+        if (!$trajet) {
+            http_response_code(404);
+            echo 'Trajet introuvable';
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $success = $this->trajetModel->delete($id);
+
+            if ($success) {
+                header('Location: /trajets');
+                exit;
+            } else {
+                http_response_code(500);
+                echo 'Erreur lors de la suppression du trajet';
+                return;
+            }
+        } else {
+            View::render('trajets/delete', [
+                'trajet' => $trajet
+            ]);
+        }
+    }
 }

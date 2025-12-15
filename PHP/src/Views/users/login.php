@@ -6,7 +6,7 @@
                     <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif ?>
-            <form action="/login" method="post" class="flex flex-col gap-10">
+            <form action="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/login" method="post" class="flex flex-col gap-10">
                 <div class="flex flex-col gap-6">
                     <div class="flex flex-col gap-4">
                         <label for="email">E-mail :</label>

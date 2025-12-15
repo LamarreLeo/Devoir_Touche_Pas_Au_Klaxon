@@ -69,34 +69,55 @@ class UserController
     }
 
     /**
-     * Vérifie les identifiants d'un utilisateur
+     * Connecte un utilisateur
      */
     public function login(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
+            header('Location: /login');
+            exit;
+        }
 
-            $user = $this->userModel->findByEmail($email);
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
 
-            if ($user && $this->userModel->verifyPassword($password, $user['password'])) {
-                session_start();
-                $_SESSION['user'] = $user;
-                header('Location: /');
-                exit;
-            } else {
-                $error = 'Email ou mot de passe incorrect';
-                View::render('users/login', [
-                    'error' => $error,
-                    'email' => $email
-                ]);
-            }
+        $user = $this->userModel->findByEmail($email);
+
+        if ($user && $this->userModel->verifyPassword($password, $user['password'])) {
+            // Connexion réussie
+            $_SESSION['user'] = [
+                'id' => $user['ìd'],
+                'email' => $user['email'],
+                'nom' => $user['nom'],
+                'prenom' => $user['prenom'],
+                'role' => $user['role']
+            ];
+            header('Location: /');
+            exit;
         } else {
+            // Échec de connexion
             View::render('users/login', [
-                'error' => '',
-                'email' => ''
+                'error' => 'Email ou mot de passe incorrect',
+                'email' => $email
             ]);
         }
+    }
+
+    /**
+     * Affiche le formulaire de connexion
+     */
+    public function showLoginForm(): void
+    {
+        // Si déjà connecté, rediriger vers l'accueil
+        if (isset($_SESSION['user'])) {
+            header('location: /');
+            exit;
+        }
+        
+        View::render('users/login', [
+            'error' => '',
+            'email' => ''
+        ]);
     }
 
     /**

@@ -25,7 +25,7 @@ class TrajetController
     {
         $trajets = $this->trajetModel->findAll();
 
-        View::render('trajet/index', [
+        View::render('trajets/index', [
             'trajets' => $trajets
         ]);
     }

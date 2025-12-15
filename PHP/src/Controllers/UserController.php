@@ -73,11 +73,6 @@ class UserController
      */
     public function login(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            header('Location: /login');
-            exit;
-        }
-
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
@@ -86,13 +81,13 @@ class UserController
         if ($user && $this->userModel->verifyPassword($password, $user['password'])) {
             // Connexion réussie
             $_SESSION['user'] = [
-                'id' => $user['ìd'],
+                'id' => $user['id'],
                 'email' => $user['email'],
                 'nom' => $user['nom'],
                 'prenom' => $user['prenom'],
                 'role' => $user['role']
             ];
-            header('Location: /');
+            header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/');
             exit;
         } else {
             // Échec de connexion
@@ -110,7 +105,7 @@ class UserController
     {
         // Si déjà connecté, rediriger vers l'accueil
         if (isset($_SESSION['user'])) {
-            header('location: /');
+            header('location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/');
             exit;
         }
         
@@ -131,7 +126,7 @@ class UserController
         // Détruit la session
         session_destroy();
 
-        header('Location: /');
+        header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/');
         exit;
     }
 }

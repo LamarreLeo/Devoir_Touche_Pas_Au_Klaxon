@@ -10,7 +10,7 @@
     <header class="flex text-white justify-center bg-[#384050] py-4">
         <div class="flex justify-between items-center max-w-[1200px] w-full">
             <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public" class="text-xl">Touche pas au klaxon</a>
-            <div class="flex">
+            <div class="flex items-center gap-6">
                 <?php if (isset($_SESSION['user'])): ?>
                     <!-- Utilisateur connecté -->
                     <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets/create" 
@@ -18,9 +18,9 @@
                         Créer un trajet
                     </a>
 
-                    <span>
-                        Bonjour <?= $_SESSION['user']['nom'] . ' ' . $_SESSION['user']['prenom'] ?>
-                    </span>
+                    <p class="text-lg">
+                        Bonjour <span class="font-bold"><?= $_SESSION['user']['nom'] . ' ' . $_SESSION['user']['prenom'] ?></span>
+                    </p>
 
                     <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/logout" class="bg-[#CD2C2E] py-2 px-4 rounded-lg">
                         Se deconnecter

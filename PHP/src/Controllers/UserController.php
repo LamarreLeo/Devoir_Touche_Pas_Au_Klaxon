@@ -125,8 +125,12 @@ class UserController
      */
     public function logout(): void
     {
-        session_start();
+        // Détruit toutes les données de session
+        $_SESSION = [];
+
+        // Détruit la session
         session_destroy();
+
         header('Location: /');
         exit;
     }

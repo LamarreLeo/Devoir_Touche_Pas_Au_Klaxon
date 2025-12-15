@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col items-center justify-center h-[calc(100vh-6vh)]">
+    <div class="flex flex-col items-center justify-center h-[calc(100vh-128px)]">
         <div class="bg-[#0074C7] text-white w-[400px] p-6 rounded-lg">
             <?php if (!empty($error)) : ?>
                 <div class="bg-red-500 text-white p-4 rounded-lg mb-4">

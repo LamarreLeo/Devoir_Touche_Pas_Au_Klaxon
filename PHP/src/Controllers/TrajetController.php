@@ -5,6 +5,8 @@ namespace Controller;
 
 use Model\Trajet;
 
+use Core\View;
+
 use PDO;
 
 class TrajetController

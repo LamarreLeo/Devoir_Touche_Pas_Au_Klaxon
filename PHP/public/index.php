@@ -11,11 +11,17 @@ use Database\Database;
 
 use Buki\Router\Router;
 
-use Model\User;
-use Model\Agence;
-use Model\Trajet;
+/**
+ * IMPORT DES CONTROLLERS
+ */
+use Controller\TrajetController;
 
-// Configuration de la base de données
+$trajetController = new TrajetController($pdo);
+
+
+/**
+ * CONFIGURATION DU ROUTEUR
+ */
 $config = require __DIR__ . "/../config/config.php";
 
 $db = new Database($config);
@@ -28,67 +34,19 @@ $router = new Router([
     'base_folder' => '/Devoir_Touche_Pas_Au_Klaxon/PHP/public'
 ]);
 
-// ROUTE DE TEST PROVISOIR
-$router->get('/', function() {
-    echo "Le routeur fonctionne correctement !";
+/**
+ * ROUTES
+ */
+$router->get('/', function() use ($trajetController) {
+    $trajetController->index();
 });
 
-$router->get('/test-db', function() use ($pdo) {
-    $stmt = $pdo->query("SHOW TABLES");
-    $tables = $stmt->fetchAll();
-    echo "<pre>";
-    print_r($tables);
-    echo "</pre>";
+$router->get('/trajets/(\d+)', function($id) use ($trajetController) {
+    $trajetController->show((int)$id);
 });
 
-$router->get('/test-user', function() use ($pdo) {
-    $userModel = new User($pdo);
-    $user = $userModel->findByEmail('admin@admin.com');
 
-    echo "<pre>";
-    print_r($user);
-    echo "</pre>";
-});
-
-$router->get('/test-agences', function() use ($pdo) {
-    $agenceModel = new Agence($pdo);
-    $agences = $agenceModel->findAll();
-
-    echo "<pre>";
-    print_r($agences);
-    echo "</pre>";
-});
-
-$router->get('/test-trajets', function() use ($pdo) {
-    $trajetModel = new Trajet($pdo);
-    $trajet = $trajetModel->findAll();
-
-    echo "<pre>";
-    print_r($trajet);
-    echo "</pre>";
-});
-
-$router->get('/test-create-trajet', function() use ($pdo) {
-
-    try {
-        $trajetModel = new Trajet($pdo);
-
-        $trajetModel->create(
-            1,
-            1,
-            2,
-            '2025-12-20 09:00:00',
-            '2025-12-20 12:00:00',
-            3
-        );
-
-        echo "Trajet créé avec succès.";
-    } catch (PDOException $e) {
-        echo "<pre>Erreur SQL : " . $e->getMessage() . "</pre>";
-    } catch (Throwable $e) {
-        echo "<pre>Erreur PHP : " . $e->getMessage() . "</pre>";
-    }
-});
-
-// DISPATCH
+/**
+ * DISPATCH
+ */
 $router->run();

@@ -10,6 +10,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Database\Database;
 use Buki\Router\Router;
 use Controller\TrajetController;
+use Controller\UserController;
 
 /**
  * CONFIGURATION
@@ -28,6 +29,7 @@ $pdo = $db->getConnection();
  * CONTROLLERS
  */
 $trajetController = new TrajetController($pdo);
+$userController = new UserController($pdo);
 
 /**
  * ROUTER
@@ -39,12 +41,23 @@ $router = new Router([
 /**
  * ROUTES
  */
+
+// Page d'accueil
 $router->get('/', function () use ($trajetController) {
     $trajetController->index();
 });
 
-$router->get('/trajets/(\d+)', function ($id) use ($trajetController) {
-    $trajetController->show((int) $id);
+// Authentification
+$router->get('/login', function () use ($userController) {
+    $userController->showLoginForm();
+});
+
+$router->post('/login', function () use ($userController) {
+    $userController->login();
+});
+
+$router->get('/logout', function () use ($userController) {
+    $userController->logout();
 });
 
 /**

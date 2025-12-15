@@ -14,7 +14,7 @@
                 <?php if (isset($_SESSION['user'])): ?>
                     <!-- Utilisateur connecté -->
                     <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets/create" 
-                        class="bg-[#0074C7] p-2 rounded-lg">
+                        class="bg-[#0074C7] py-2 px-4 rounded-lg">
                         Créer un trajet
                     </a>
 
@@ -22,12 +22,12 @@
                         Bonjour <?= $_SESSION['user']['nom'] . ' ' . $_SESSION['user']['prenom'] ?>
                     </span>
 
-                    <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/logout" class="bg-[#CD2C2E] p-2 rounded-lg">
+                    <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/logout" class="bg-[#CD2C2E] py-2 px-4 rounded-lg">
                         Se deconnecter
                     </a>
                 <?php else: ?>
                     <!-- Utilisateur non connecté -->
-                    <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/login" class="bg-[#0074C7] p-2 rounded-lg">
+                    <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/login" class="bg-[#82b864] py-2 px-4 rounded-lg">
                         Se connecter
                     </a>
                 <?php endif ?>

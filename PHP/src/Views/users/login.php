@@ -11,7 +11,7 @@
                     <h3 class="text-2xl font-bold">Connexion</h3>
                     <div class="flex flex-col gap-6">
                         <input 
-                            class="bg-[#F1F8FC] p-2 rounded-lg focus:outline-none text-[#384050] h-12"
+                            class="bg-white p-2 rounded-lg focus:outline-none text-[#384050] h-12"
                             type="email" 
                             name="email" 
                             id="email" 
@@ -20,7 +20,7 @@
                             required
                         >
                         <input 
-                            class="bg-[#F1F8FC] p-2 rounded-lg focus:outline-none text-[#384050] h-12"
+                            class="bg-white p-2 rounded-lg focus:outline-none text-[#384050] h-12"
                             type="password" 
                             name="password" 
                             id="password" 

@@ -15,14 +15,6 @@ class Trajet
     }
 
     /**
-     * Retourne l'instance PDO
-     */
-    public function getPdo(): PDO
-    {
-        return $this->pdo;
-    }
-
-    /**
      * Lister tous les trajets
      */
     public function findAll(): array

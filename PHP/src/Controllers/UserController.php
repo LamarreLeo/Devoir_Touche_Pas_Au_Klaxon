@@ -69,7 +69,7 @@ class UserController
     }
 
     /**
-     * Vérifie les identifiants d'un utilisateur
+     * Connecte un utilisateur
      */
     public function login(): void
     {
@@ -97,6 +97,23 @@ class UserController
                 'email' => ''
             ]);
         }
+    }
+
+    /**
+     * Affiche le formulaire de connexion
+     */
+    public function showLoginForm(): void
+    {
+        // Si déjà connecté, rediriger vers l'accueil
+        if (isset($_SESSION['user'])) {
+            header('location: /');
+            exit;
+        }
+        
+        View::render('users/login', [
+            'error' => '',
+            'email' => ''
+        ]);
     }
 
     /**

@@ -29,7 +29,7 @@
                         >
                     </div>
                 </div>
-                <button type="submit" class="bg-[#82b864] p-2 rounded-lg h-12">Se connecter</button>
+                <button type="submit" class="bg-[#82b864] p-2 rounded-lg h-12 cursor-pointer">Se connecter</button>
             </form>
         </div>
     </div>

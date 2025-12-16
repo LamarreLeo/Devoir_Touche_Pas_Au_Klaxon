@@ -22,11 +22,14 @@ class Trajet
         $stmt = $this->pdo->query("
                 SELECT
                     t.id,
+                    t.user_id,
                     t.date_heure_depart,
                     t.date_heure_arrivee,
                     t.places,
                     u.nom AS user_nom,
                     u.prenom AS user_prenom,
+                    u.phone AS user_phone,
+                    u.email AS user_email,
                     a1.ville AS agence_depart,
                     a2.ville AS agence_arrivee
                 FROM trajets t

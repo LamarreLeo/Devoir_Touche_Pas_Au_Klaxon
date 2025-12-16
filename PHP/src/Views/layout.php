@@ -45,4 +45,4 @@
         <p>&copy; 2025 - CENEF - MVC PHP</p>
     </footer>
 </body>
-</html
+</html>

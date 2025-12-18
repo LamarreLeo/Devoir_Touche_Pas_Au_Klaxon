@@ -11,7 +11,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/trajets/create" method="post" class="flex flex-col gap-6">
+            <form action="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets/create" method="post" class="flex flex-col gap-6">
                 <div class="flex flex-col gap-6">
                     <h3 class="text-2xl font-bold text-center mb-4">Créer un trajet</h3>
                     <!-- Conducteur (pré-rempli et non modifiable si pas admin) -->
@@ -124,7 +124,7 @@
                 
                 <div class="flex gap-4 justify-center mt-8">
                     <button type="submit" class="bg-[#82b864] text-white px-8 py-3 rounded-lg font-bold cursor-pointer hover:opacity-90 transition-opacity">Créer le trajet</button>
-                    <a href="/" class="bg-[#cd2c2e] text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Annuler</a>
+                    <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/" class="bg-[#cd2c2e] text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Annuler</a>
                 </div>
             </form>
         </div>

@@ -55,12 +55,17 @@ class TrajetController
      */
     public function create(): void
     {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+
         $agenceModel = new \Model\Agence($this->pdo);
         $agences = $agenceModel->findAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
-                'user_id' => (int)($_POST['user_id'] ?? 0),
+                'user_id' => $_SESSION['user']['id'],
                 'agence_depart_id' => (int)($_POST['agence_depart_id'] ?? 0),
                 'agence_arrivee_id' => (int)($_POST['agence_arrivee_id'] ?? 0),
                 'date_heure_depart' => $_POST['date_heure_depart'] ?? '',
@@ -81,7 +86,7 @@ class TrajetController
                 );
 
                 if ($success) {
-                    header('Location: /trajets');
+                    header('Location: /');
                     exit;
                 } else {
                     $errors[] = 'Erreur lors de la création du trajet';

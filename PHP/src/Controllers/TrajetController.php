@@ -56,7 +56,7 @@ class TrajetController
     public function create(): void
     {
         if (!isset($_SESSION['user'])) {
-            header('Location: /login');
+            header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/login');
             exit;
         }
 
@@ -86,7 +86,7 @@ class TrajetController
                 );
 
                 if ($success) {
-                    header('Location: /');
+                    header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/');
                     exit;
                 } else {
                     $errors[] = 'Erreur lors de la création du trajet';
@@ -145,7 +145,7 @@ class TrajetController
                 );
 
                 if ($success) {
-                    header('Location: /trajets');
+                    header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets');
                     exit;
                 } else {
                     $errors[] = 'Erreur lors de la modification du trajet';
@@ -223,7 +223,7 @@ class TrajetController
             $success = $this->trajetModel->delete($id);
 
             if ($success) {
-                header('Location: /trajets');
+                header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets');
                 exit;
             } else {
                 http_response_code(500);

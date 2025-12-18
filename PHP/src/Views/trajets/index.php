@@ -87,7 +87,7 @@
                                                 Détails
                                             </button>
 
-                                            <?php if ($_SESSION['user']['id'] == $trajet['user_id']): ?>
+                                            <?php if ($_SESSION['user']['id'] == $trajet['user_id'] || $_SESSION['user']['role'] === 'admin'): ?>
                                                 <a 
                                                     href="/trajets/<?= $trajet['id'] ?>/edit"
                                                     class="text-[#00497c] cursor-pointer"

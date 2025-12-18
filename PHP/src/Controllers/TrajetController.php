@@ -175,10 +175,6 @@ class TrajetController
     {
         $errors = [];
 
-        if ($data['user_id'] <= 0) {
-            $errors[] = 'L\'utilisateur est requis';
-        }
-
         if ($data['agence_depart_id'] <= 0) {
             $errors[] = 'L\'agence de départ est requise';
         }

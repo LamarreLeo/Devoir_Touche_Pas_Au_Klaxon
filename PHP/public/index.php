@@ -60,6 +60,15 @@ $router->get('/logout', function () use ($userController) {
     $userController->logout();
 });
 
+// Page création de trajet
+$router->any('/trajets/create', function () use ($trajetController) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $trajetController->create();
+    } else {
+        $trajetController->create();
+    }
+});
+
 /**
  * DISPATCH
  */

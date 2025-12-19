@@ -67,6 +67,17 @@ $router->get('/logout', function () use ($userController) {
     $userController->logout();
 });
 
+// Gestion des utilisateurs (admin seulement)
+$router->get('/users', function () use ($userController) {
+    // Vérifier que l'utilisateur est admin
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+        http_response_code(403);
+        echo 'Accès non autorisé';
+        exit;
+    }
+    $userController->index();
+});
+
 $router->post('/trajets/delete', function () use ($trajetController) {
     $id = $_POST['id'] ?? 0;
     $trajetController->delete((int) $id);

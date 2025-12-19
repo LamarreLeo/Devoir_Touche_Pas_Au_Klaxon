@@ -27,7 +27,7 @@ class UserController
     {
         $users = $this->userModel->findAll();
 
-        View::render('users/index', [
+        View::render('users/users', [
             'users' => $users
         ]);
     }

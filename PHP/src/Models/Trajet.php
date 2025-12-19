@@ -48,9 +48,10 @@ class Trajet
     public function findById(int $id): ?array
     {
         $stmt = $this->pdo->prepare("
-            SELECT *
-            FROM trajets
-            WHERE id = :id
+            SELECT t.*, u.prenom as user_prenom, u.nom as user_nom, u.email as user_email
+            FROM trajets t
+            JOIN users u ON t.user_id = u.id
+            WHERE t.id = :id
         ");
 
         $stmt->execute(['id' => $id]);

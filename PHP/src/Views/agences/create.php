@@ -1,47 +1,44 @@
 <div class="bg-[#f1f8fc]">
-    <div class="flex flex-col h-[calc(100vh-128px)] max-w-[600px] mx-auto pt-12">
-        <h2 class="text-2xl mb-6">Créer une agence</h2>
-
-        <form method="POST" action="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences/create" class="space-y-4">
+    <div class="flex flex-col items-center justify-center h-[calc(100vh-128px)]">
+        <div class="bg-[#384050] text-white max-w-[600px] mx-auto w-full p-12 rounded-lg">
             <?php if (!empty($errors)): ?>
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?= htmlspecialchars($error) ?></p>
-                    <?php endforeach; ?>
+                <div class="bg-red-500 text-white p-4 rounded-lg mb-4">
+                    <ul class="list-disc list-inside">
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             <?php endif; ?>
 
-            <div>
-                <label for="ville" class="block text-sm font-medium text-gray-700 mb-1">
-                    Ville <span class="text-red-500">*</span>
-                </label>
-                <input
-                    type="text"
-                    id="ville"
-                    name="ville"
-                    value="<?= htmlspecialchars($data['ville'] ?? '') ?>"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0074C7] focus:border-transparent"
-                    required
-                    maxlength="100"
-                    placeholder="Nom de la ville"
-                >
-            </div>
+            <form method="POST" action="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences/create" class="flex flex-col gap-6">
+                <div class="flex flex-col gap-6">
+                    <h3 class="text-2xl font-bold text-center mb-4">Créer une agence</h3>
 
-            <div class="flex gap-4 pt-4">
-                <button
-                    type="submit"
-                    class="bg-[#0074C7] text-white py-2 px-6 rounded-lg hover:bg-[#0056b3] transition-colors"
-                >
-                    Créer l'agence
-                </button>
+                    <!-- Ville -->
+                    <div>
+                        <label for="ville" class="block text-sm font-bold mb-2">
+                            Ville de l'agence *
+                        </label>
+                        <input
+                            type="text"
+                            id="ville"
+                            name="ville"
+                            value="<?= htmlspecialchars($data['ville'] ?? '') ?>"
+                            class="w-full p-3 rounded-lg border-2 border-[#0074c7] bg-white text-[#384050] focus:outline-none focus:border-[#00497c] transition-colors"
+                            required
+                            maxlength="100"
+                            placeholder="Entrez le nom de la ville"
+                        >
+                        <p class="text-xs mt-2 opacity-75">Entre 2 et 100 caractères</p>
+                    </div>
+                </div>
                 
-                <a
-                    href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences"
-                    class="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600 transition-colors"
-                >
-                    Annuler
-                </a>
-            </div>
-        </form>
+                <div class="flex gap-4 justify-center mt-8">
+                    <button type="submit" class="bg-[#82b864] text-white px-8 py-3 rounded-lg font-bold cursor-pointer hover:opacity-90 transition-opacity">Créer l'agence</button>
+                    <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences" class="bg-[#cd2c2e] text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Annuler</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

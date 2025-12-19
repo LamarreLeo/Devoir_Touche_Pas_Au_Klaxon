@@ -69,6 +69,11 @@ $router->any('/trajets/create', function () use ($trajetController) {
     }
 });
 
+// Page de modification de trajet
+$router->any('/trajets/(\d+)/edit', function ($id) use ($trajetController) {
+    $trajetController->edit((int) $id);
+});
+
 /**
  * DISPATCH
  */

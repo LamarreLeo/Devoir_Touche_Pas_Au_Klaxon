@@ -95,13 +95,16 @@
                                                     Modifier
                                                 </a>
 
-                                                <button
-                                                    type="submit"
-                                                    onclick="return confirm('Voulez-vous vraiment supprimer ce trajet ?')"
-                                                    class="text-[#cd2c2e]"
-                                                >
-                                                    Supprimer
-                                                </button>
+                                                <form method="POST" action="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets/delete">
+                                                    <input type="hidden" name="id" value="<?= $trajet['id'] ?>">
+                                                    <button
+                                                        type="submit"
+                                                        onclick="return confirm('Voulez-vous vraiment supprimer ce trajet ?')"
+                                                        class="text-[#cd2c2e]"
+                                                    >
+                                                        Supprimer
+                                                    </button>
+                                                </form>
                                             <?php endif; ?>
                                         </td>
                                     <?php endif; ?>

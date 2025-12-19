@@ -230,6 +230,19 @@ class TrajetController
      */
     public function delete(int $id): void
     {
+        // Vérifier que l'utilisateur est connecté
+        if (!isset($_SESSION['user'])) {
+            header(('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/login'));
+            exit;
+        }
+
+        // Vérifier que c'est bien une requête POST 
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo 'Méthode non autorisée';
+            return;   
+        }
+
         $trajet = $this->trajetModel->findById($id);
 
         if (!$trajet) {
@@ -238,21 +251,27 @@ class TrajetController
             return;
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $success = $this->trajetModel->delete($id);
+        // Vérifier que l'utilisateur est l'auteur OU admin
+        $isAuthor = $_SESSION['user']['id'] === $trajet['user_id'];
+        $isAdmin = $_SESSION['user']['role'] === 'admin';
 
-            if ($success) {
-                header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets');
-                exit;
-            } else {
-                http_response_code(500);
-                echo 'Erreur lors de la suppression du trajet';
-                return;
-            }
+        if (!$isAuthor && !$isAdmin) {
+            http_response_code(403);
+            echo 'Vous n\'êtes pas autorisé à supprimer ce trajet';
+            return;
+        }
+
+        // Supprimer le trajet
+        $success = $this->trajetModel->delete($id);
+
+        if ($success) {
+            // Redirection vers la liste des trajets
+            header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/');
+            exit;
         } else {
-            View::render('trajets/delete', [
-                'trajet' => $trajet
-            ]);
+            http_response_code(500);
+            echo 'Erreur lors de la suppression du trajet';
+            return;
         }
     }
 }

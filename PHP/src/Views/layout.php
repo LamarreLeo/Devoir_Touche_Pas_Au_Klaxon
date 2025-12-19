@@ -13,10 +13,29 @@
             <div class="flex items-center gap-6">
                 <?php if (isset($_SESSION['user'])): ?>
                     <!-- Utilisateur connecté -->
-                    <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets/create" 
-                        class="bg-[#0074C7] py-2 px-4 rounded-lg">
-                        Créer un trajet
-                    </a>
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'user'): ?>
+                        <!-- Rôle user -->
+                        <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets/create" 
+                            class="bg-[#0074C7] py-2 px-4 rounded-lg">
+                            Créer un trajet
+                        </a>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+                        <!-- Rôle admin -->
+                        <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/users" 
+                            class="bg-[#0074C7] py-2 px-4 rounded-lg">
+                            Utilisateurs
+                        </a>
+                        <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences" 
+                            class="bg-[#0074C7] py-2 px-4 rounded-lg">
+                            Agences
+                        </a>
+                        <a href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/" 
+                            class="bg-[#0074C7] py-2 px-4 rounded-lg">
+                            Trajets
+                        </a>
+                    <?php endif; ?>
 
                     <p class="text-lg">
                         Bonjour <span class="font-bold"><?= $_SESSION['user']['nom'] . ' ' . $_SESSION['user']['prenom'] ?></span>

@@ -67,6 +67,11 @@ $router->get('/logout', function () use ($userController) {
     $userController->logout();
 });
 
+$router->post('/trajets/delete', function () use ($trajetController) {
+    $id = $_POST['id'] ?? 0;
+    $trajetController->delete((int) $id);
+});
+
 // Page création de trajet
 $router->any('/trajets/create', function () use ($trajetController) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

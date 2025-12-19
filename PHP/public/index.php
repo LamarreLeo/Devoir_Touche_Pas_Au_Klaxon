@@ -35,7 +35,14 @@ $userController = new UserController($pdo);
  * ROUTER
  */
 $router = new Router([
-    'base_folder' => '/Devoir_Touche_Pas_Au_Klaxon/PHP/public'
+    'base_folder' => '/Devoir_Touche_Pas_Au_Klaxon/PHP/public',
+    'paths' => [
+        'controllers' => __DIR__ . '/../src/Controllers',
+    ],
+    'namespaces' => [
+        'controllers' => 'Controller',
+    ],
+    'main_method' => 'main'
 ]);
 
 /**
@@ -70,8 +77,14 @@ $router->any('/trajets/create', function () use ($trajetController) {
 });
 
 // Page de modification de trajet
-$router->any('/trajets/(\d+)/edit', function ($id) use ($trajetController) {
-    $trajetController->edit((int) $id);
+$router->any('/trajets/edit', function () use ($trajetController) {
+    $id = $_GET['id'] ?? null;
+    if ($id) {
+        $trajetController->edit((int) $id);
+    } else {
+        echo "ID manquant";
+        exit;
+    }
 });
 
 /**

@@ -14,7 +14,7 @@
         <?php if (empty($trajets)) : ?>
             <p class="text-center">Aucun trajet proposé</p>
             <?php else : ?>
-                <div class="overflow-x-auto rounded-lg mt-6">
+                <div class="overflow-x-auto rounded-lg mt-6 mb-6">
                     <table class="min-w-full bg-gray-600 rounded-lg overflow-hidden border">
                         <thead class="bg-[#384050] text-white">
                             <tr class="divide-x divide-gray-600">
@@ -89,7 +89,7 @@
 
                                             <?php if ($_SESSION['user']['id'] == $trajet['user_id'] || $_SESSION['user']['role'] === 'admin'): ?>
                                                 <a 
-                                                    href="/trajets/<?= $trajet['id'] ?>/edit"
+                                                    href="/Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets/edit?id=<?= $trajet['id'] ?>"
                                                     class="text-[#00497c] cursor-pointer"
                                                 >
                                                     Modifier

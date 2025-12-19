@@ -163,7 +163,7 @@ class TrajetController
 
                 if ($success) {
                     // Redirection vers la liste des trajets
-                    header('Location: /Dvoir_Touche_Pas_Au_Klaxon/PHP/public/');
+                    header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/');
                     exit;
                 } else {
                     $errors[] = 'Erreur lors de la modification du trajet';
@@ -179,7 +179,7 @@ class TrajetController
         } else {
             // Affichage du formulaire pré-rempli
             View::render('trajets/edit', [
-                'trajet' => $agences,
+                'trajet' => $trajet,
                 'agences' => $agences,
                 'errors' => [],
                 'data' => $trajet

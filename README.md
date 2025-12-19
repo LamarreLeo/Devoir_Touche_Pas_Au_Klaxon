@@ -18,7 +18,7 @@
    ```
 2. **Naviguer vers le Répertoire du Projet**
    ```bash
-   cd Devoir_Touche_Pas_Au_Klaxon
+   cd Devoir_Touche_Pas_Au_Klaxon/PHP
    ```
 3. **Installer les Dépendances**
    ```bash

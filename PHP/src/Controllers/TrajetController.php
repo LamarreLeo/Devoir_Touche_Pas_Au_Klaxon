@@ -112,11 +112,27 @@ class TrajetController
      */
     public function edit(int $id): void
     {
+        // Vérifier que l'utilisateur est connecté
+        if (!isset($_SESSION['user'])) {
+            header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/login');
+            exit;
+        }
+
         $trajet = $this->trajetModel->findById($id);
 
         if (!$trajet) {
             http_response_code(404);
-            echo 'Trajet introuvable';
+            echo 'Trajet Introuvable';
+            return;
+        }
+
+        // Vérifier que l'utilisateur est l'auteur OU admin
+        $isAuthor = $_SESSION['user']['id'] === $trajet['user_id'];
+        $isAdmin = $_SESSION['user']['role'] === 'admin';
+
+        if (!$isAuthor && !$isAdmin) {
+            http_response_code(403);
+            echo 'Vous n\'êtes pas autorisé à modifier ce trajet';
             return;
         }
 
@@ -125,6 +141,7 @@ class TrajetController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
+                'user_id' => $trajet['user_id'],
                 'agence_depart_id' => (int)($_POST['agence_depart_id'] ?? 0),
                 'agence_arrivee_id' => (int)($_POST['agence_arrivee_id'] ?? 0),
                 'date_heure_depart' => $_POST['date_heure_depart'] ?? '',
@@ -135,7 +152,7 @@ class TrajetController
             $errors = $this->validateTrajetData($data);
 
             if (empty($errors)) {
-                $success = $this->trajetModel->update(
+                $success = $this->trajetModel->Update(
                     $id,
                     $data['agence_depart_id'],
                     $data['agence_arrivee_id'],
@@ -145,7 +162,8 @@ class TrajetController
                 );
 
                 if ($success) {
-                    header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/trajets');
+                    // Redirection vers la liste des trajets
+                    header('Location: /Dvoir_Touche_Pas_Au_Klaxon/PHP/public/');
                     exit;
                 } else {
                     $errors[] = 'Erreur lors de la modification du trajet';
@@ -153,14 +171,15 @@ class TrajetController
             }
 
             View::render('trajets/edit', [
-                'trajet' => $trajet,
+                'trajet'=> $trajet,
                 'agences' => $agences,
                 'errors' => $errors,
                 'data' => array_merge($trajet, $data)
             ]);
         } else {
+            // Affichage du formulaire pré-rempli
             View::render('trajets/edit', [
-                'trajet' => $trajet,
+                'trajet' => $agences,
                 'agences' => $agences,
                 'errors' => [],
                 'data' => $trajet

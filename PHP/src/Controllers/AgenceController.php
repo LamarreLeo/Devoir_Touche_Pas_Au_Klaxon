@@ -55,6 +55,13 @@ class AgenceController
      */
     public function create(): void
     {
+        // Vérifier que l'utilisateur est connecté et admin
+        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+            http_response_code(403);
+            echo 'Accès non autorisé';
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'ville' => trim($_POST['ville'] ?? '')
@@ -66,7 +73,7 @@ class AgenceController
                 $success = $this->agenceModel->create($data['ville']);
 
                 if ($success) {
-                    header('Location: /agences');
+                    header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences');
                     exit;
                 } else {
                     $errors[] = 'Erreur lors de la création de l\'agence';
@@ -90,6 +97,13 @@ class AgenceController
      */
     public function edit(int $id): void
     {
+        // Vérifier que l'utilisateur est connecté et admin
+        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+            http_response_code(403);
+            echo 'Accès non autorisé';
+            return;
+        }
+
         $agence = $this->agenceModel->findById($id);
 
         if (!$agence) {
@@ -109,7 +123,7 @@ class AgenceController
                 $success = $this->agenceModel->update($id, $data['ville']);
 
                 if ($success) {
-                    header('Location: /agences');
+                    header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences');
                     exit;
                 } else {
                     $errors[] = 'Erreur lors de la modification de l\'agence';
@@ -135,6 +149,20 @@ class AgenceController
      */
     public function delete(int $id): void
     {
+        // Vérifier que l'utilisateur est connecté et admin
+        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+            http_response_code(403);
+            echo 'Accès non autorisé';
+            return;
+        }
+
+        // Vérifier que c'est bien une requête POST 
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo 'Méthode non autorisée';
+            return;   
+        }
+
         $agence = $this->agenceModel->findById($id);
 
         if (!$agence) {
@@ -143,21 +171,17 @@ class AgenceController
             return;
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $success = $this->agenceModel->delete($id);
+        // Supprimer l'agence
+        $success = $this->agenceModel->delete($id);
 
-            if ($success) {
-                header('Location: /agences');
-                exit;
-            } else {
-                http_response_code(500);
-                echo 'Erreur lors de la suppression de l\'agence';
-                return;
-            }
+        if ($success) {
+            // Redirection vers la liste des agences
+            header('Location: /Devoir_Touche_Pas_Au_Klaxon/PHP/public/agences');
+            exit;
         } else {
-            View::render('agences/delete', [
-                'agence' => $agence
-            ]);
+            http_response_code(500);
+            echo 'Erreur lors de la suppression de l\'agence';
+            return;
         }
     }
 

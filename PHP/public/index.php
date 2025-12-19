@@ -11,6 +11,7 @@ use Database\Database;
 use Buki\Router\Router;
 use Controller\TrajetController;
 use Controller\UserController;
+use Controller\AgenceController;
 
 /**
  * CONFIGURATION
@@ -30,6 +31,7 @@ $pdo = $db->getConnection();
  */
 $trajetController = new TrajetController($pdo);
 $userController = new UserController($pdo);
+$agenceController = new AgenceController($pdo);
 
 /**
  * ROUTER
@@ -76,6 +78,41 @@ $router->get('/users', function () use ($userController) {
         exit;
     }
     $userController->index();
+});
+
+// Gestion des agences (admin seulement)
+$router->get('/agences', function () use ($agenceController) {
+    // Vérifier que l'utilisateur est admin
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+        http_response_code(403);
+        echo 'Accès non autorisé';
+        exit;
+    }
+    $agenceController->index();
+});
+
+// Gestion des agences (admin seulement)
+$router->any('/agences/create', function () use ($agenceController) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $agenceController->create();
+    } else {
+        $agenceController->create();
+    }
+});
+
+$router->any('/agences/edit', function () use ($agenceController) {
+    $id = $_GET['id'] ?? null;
+    if ($id) {
+        $agenceController->edit((int) $id);
+    } else {
+        echo "ID manquant";
+        exit;
+    }
+});
+
+$router->post('/agences/delete', function () use ($agenceController) {
+    $id = $_POST['id'] ?? 0;
+    $agenceController->delete((int) $id);
 });
 
 $router->post('/trajets/delete', function () use ($trajetController) {
